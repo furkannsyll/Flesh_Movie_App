@@ -51,6 +51,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
     return (
         <div className="carousel">
             <ContentWrapper>
+            {title && <div className="carouselTitle">{title}</div>}
                 <BsFillArrowLeftCircleFill
                     className="carouselLeftNav arrow"
                     onClick={() => navigation("left")}
@@ -76,7 +77,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                                             }`
                                         )
                                     } 
-                                >
+                                    >
                                     <div className="posterBlock">
                                         <Img src={posterUrl} />
                                         <CircleRating rating={item.vote_average.toFixed(1)} />
@@ -87,7 +88,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                                             {item.title || item.name}
                                         </span>
                                         <span className="date">
-                                            {dayjs(item.release_Date).format(
+                                            {dayjs(item.release_date || item.first_air_date).format(
                                                 "MMM D, YYYY"
                                             )}
                                         </span>
